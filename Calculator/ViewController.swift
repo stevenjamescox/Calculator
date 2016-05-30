@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         
         //add buttons to view
         view.addSubview(entryField)
-        //view.addSubview(zeroButton)
+        view.addSubview(zeroButton)
         view.addSubview(oneButton)
         view.addSubview(twoButton)
         view.addSubview(threeButton)
@@ -65,8 +65,8 @@ class ViewController: UIViewController {
         view.addSubview(sevenButton)
         view.addSubview(eightButton)
         view.addSubview(nineButton)
-        //view.addSubview(enterButton)
-        //view.addSubview(plusButton)
+        view.addSubview(enterButton)
+        view.addSubview(plusButton)
         view.addSubview(minusButton)
         view.addSubview(multiplyButton)
         view.addSubview(divideButton)
@@ -166,7 +166,7 @@ class ViewController: UIViewController {
         ///welp, it looks right for now, can't do much with the height until the next rows are set. BUT, I am concerned that the entryLabel isn't looking filled it. its space is correct, but not color
         
         // MARK: second row of buttons (4,5,6,mult)
-      
+        
         let fourButtonTopConstraint = NSLayoutConstraint(item: fourButton, attribute: .Top, relatedBy: .Equal, toItem: sevenButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
         
         let fiveButtonTopConstraint = NSLayoutConstraint(item: fiveButton, attribute: .Top, relatedBy: .Equal, toItem: eightButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
@@ -176,7 +176,7 @@ class ViewController: UIViewController {
         let multiplyButtonTopConstraint = NSLayoutConstraint(item: multiplyButton, attribute: .Top, relatedBy: .Equal, toItem: divideButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
         
         view.addConstraints([fourButtonTopConstraint, fiveButtonTopConstraint, sixButtonTopConstraint, multiplyButtonTopConstraint])
- 
+        
         
         // okay now the side to side constraints
         
@@ -255,10 +255,98 @@ class ViewController: UIViewController {
         let minusButtonWidth = NSLayoutConstraint(item: minusButton, attribute: .Width, relatedBy: .Equal, toItem: oneButton, attribute: .Width, multiplier: 1.0, constant: 0)
         
         view.addConstraints([oneButtonWidth, twoButtonWidth, threeButtonWidth, minusButtonWidth])
-
         
+        // MARK: last row of buttons (0[double-wide], enter, plus)
+        
+        let zeroButtonTopConstraint = NSLayoutConstraint(item: zeroButton, attribute: .Top, relatedBy: .Equal, toItem: oneButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let enterButtonTopConstraint = NSLayoutConstraint(item: enterButton, attribute: .Top, relatedBy: .Equal, toItem: threeButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let plusButtonTopConstraint = NSLayoutConstraint(item: plusButton, attribute: .Top, relatedBy: .Equal, toItem: minusButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([zeroButtonTopConstraint, enterButtonTopConstraint, plusButtonTopConstraint])
+        
+        //now these guys need to constrain to bottom of entire view if this thing's gonna fill out
+        
+        let zeroButtonBottomConstraint = NSLayoutConstraint(item: zeroButton, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let enterButtonBottomConstraint = NSLayoutConstraint(item: enterButton, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let plusButtonBottomConstraint = NSLayoutConstraint(item: plusButton, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([zeroButtonBottomConstraint, enterButtonBottomConstraint, plusButtonBottomConstraint])
+        
+        
+        // side to side constraints
+        
+        let zeroButtonLeadingConstraint = NSLayoutConstraint(item: zeroButton, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let zeroButtonTrailingConstraint = NSLayoutConstraint(item: zeroButton, attribute: .Trailing, relatedBy: .Equal, toItem: enterButton, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let enterButtonLeadingConstraint = NSLayoutConstraint(item: enterButton, attribute: .Leading, relatedBy: .Equal, toItem: zeroButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        let enterButtonTrailingConstraint = NSLayoutConstraint(item: enterButton, attribute: .Trailing, relatedBy: .Equal, toItem: plusButton, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let plusButtonLeadingConstraint = NSLayoutConstraint(item: plusButton, attribute: .Leading, relatedBy: .Equal, toItem: enterButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        let plusButtonTrailingConstraint = NSLayoutConstraint(item: plusButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([zeroButtonLeadingConstraint, zeroButtonTrailingConstraint, enterButtonLeadingConstraint, enterButtonTrailingConstraint, plusButtonLeadingConstraint, plusButtonTrailingConstraint])
+        
+        //and then widths, but uhhhhhhh we'll hafta double that zero button width
+        
+        let zeroButtonWidth = NSLayoutConstraint(item: zeroButton, attribute: .Width, relatedBy: .Equal, toItem: enterButton, attribute: .Width, multiplier: 2.0, constant: 0)
+        
+        let enterButtonWidth = NSLayoutConstraint(item: enterButton, attribute: .Width, relatedBy: .Equal, toItem: plusButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        let plusButtonWidth = NSLayoutConstraint(item: plusButton, attribute: .Width, relatedBy: .Equal, toItem: zeroButton, attribute: .Width, multiplier: 0.5, constant: 0)
+        
+        view.addConstraints([zeroButtonWidth, enterButtonWidth, plusButtonWidth])
+        
+        //that looks bad, but I suppose it's time to contrain 'em all heightwise
+        
+        //MARK: Height fun
+        
+        let sevenButtonHeight = NSLayoutConstraint(item: sevenButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let eightButtonHeight = NSLayoutConstraint(item: eightButton, attribute: .Height, relatedBy: .Equal, toItem: sevenButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        //okay, did seven to eight and eight to seven, will just constrain the rest to match eight
+        
+        let nineButtonHeight = NSLayoutConstraint(item: nineButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let divideButtonHeight = NSLayoutConstraint(item: divideButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let fourButtonHeight = NSLayoutConstraint(item: fourButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let fiveButtonHeight = NSLayoutConstraint(item: fiveButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let sixButtonHeight = NSLayoutConstraint(item: sixButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let multiplyButtonHeight = NSLayoutConstraint(item: multiplyButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let oneButtonHeight = NSLayoutConstraint(item: oneButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let twoButtonHeight = NSLayoutConstraint(item: twoButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let threeButtonHeight = NSLayoutConstraint(item: threeButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let minusButtonHeight = NSLayoutConstraint(item: minusButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let zeroButtonHeight = NSLayoutConstraint(item: zeroButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let enterButtonHeight = NSLayoutConstraint(item: enterButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        let plusButtonHeight = NSLayoutConstraint(item: plusButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([sevenButtonHeight, eightButtonHeight, nineButtonHeight, divideButtonHeight, fourButtonHeight, fiveButtonHeight, sixButtonHeight, multiplyButtonHeight, oneButtonHeight, twoButtonHeight, threeButtonHeight, minusButtonHeight, zeroButtonHeight, enterButtonHeight, plusButtonHeight])
         
     }
+    
+    //YES!!! it worked
+    
+    
+    
     
 }
 
