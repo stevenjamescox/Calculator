@@ -165,8 +165,41 @@ class ViewController: UIViewController {
         
         ///welp, it looks right for now, can't do much with the height until the next rows are set. BUT, I am concerned that the entryLabel isn't looking filled it. its space is correct, but not color
         
+        // MARK: second row of buttons (4,5,6,mult)
         
-
+        
+        let fourButtonTopConstraint = NSLayoutConstraint(item: fourButton, attribute: .Top, relatedBy: .Equal, toItem: sevenButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let fiveButtonTopConstraint = NSLayoutConstraint(item: fiveButton, attribute: .Top, relatedBy: .Equal, toItem: eightButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let sixButtonTopConstraint = NSLayoutConstraint(item: sixButton, attribute: .Top, relatedBy: .Equal, toItem: nineButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let multiplyButtonTopConstraint = NSLayoutConstraint(item: multiplyButton, attribute: .Top, relatedBy: .Equal, toItem: divideButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([fourButtonTopConstraint, fiveButtonTopConstraint, sixButtonTopConstraint, multiplyButtonTopConstraint])
+        
+        // okay now the side to side constraints
+        
+        
+        let fourButtonLeadingConstraint = NSLayoutConstraint(item: fourButton, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let fourButtonTrailingConstraint = NSLayoutConstraint(item: fourButton, attribute: .Trailing, relatedBy: .Equal, toItem: fiveButton, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let fiveButtonLeadingConstraint = NSLayoutConstraint(item: fiveButton, attribute: .Leading, relatedBy: .Equal, toItem: fourButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        let fiveButtonTrailingConstraint = NSLayoutConstraint(item: fiveButton, attribute: .Trailing, relatedBy: .Equal, toItem: sixButton, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let sixButtonLeadingConstraint = NSLayoutConstraint(item: sixButton, attribute: .Leading, relatedBy: .Equal, toItem: fiveButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        let sixButtonTrailingConstraint = NSLayoutConstraint(item: sixButton, attribute: .Trailing, relatedBy: .Equal, toItem: multiplyButton, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let multiplyButtonLeadingConstraint = NSLayoutConstraint(item: multiplyButton, attribute: .Leading, relatedBy: .Equal, toItem: nineButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        let multiplyButtonTrailingConstraint = NSLayoutConstraint(item: divideButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([fourButtonLeadingConstraint, fourButtonTrailingConstraint, fiveButtonLeadingConstraint, fiveButtonTrailingConstraint, sixButtonLeadingConstraint, sixButtonTrailingConstraint, multiplyButtonLeadingConstraint, multiplyButtonTrailingConstraint])
+        
+        
     }
     
 }
