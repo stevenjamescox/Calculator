@@ -10,32 +10,26 @@ import Foundation
 
 class Stack {
     
+    private var stack = [Float]()
     
-    private var stack: [Float]
     
-    init(stack: [Float]){
-    self.stack = stack
-    
+    func pop() -> Float? {
+        return stack.removeLast()
     }
     
     
-    func pop() -> Float {
-        
-        
+    func push(number: Float) {
+        stack.append(number)
     }
     
-    func push() -> Float {
-        
-    }
     
-    func log(){
+    func log() {
         print(stack)
     }
     
-    func count() -> Int{
-        stack.count
-        
-    }
     
+    func count() -> Int {
+        return stack.count
+    }
     
 }
