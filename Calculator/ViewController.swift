@@ -167,7 +167,6 @@ class ViewController: UIViewController {
         
         // MARK: second row of buttons (4,5,6,mult)
         
-        
         let fourButtonTopConstraint = NSLayoutConstraint(item: fourButton, attribute: .Top, relatedBy: .Equal, toItem: sevenButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
         
         let fiveButtonTopConstraint = NSLayoutConstraint(item: fiveButton, attribute: .Top, relatedBy: .Equal, toItem: eightButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
@@ -179,7 +178,6 @@ class ViewController: UIViewController {
         view.addConstraints([fourButtonTopConstraint, fiveButtonTopConstraint, sixButtonTopConstraint, multiplyButtonTopConstraint])
         
         // okay now the side to side constraints
-        
         
         let fourButtonLeadingConstraint = NSLayoutConstraint(item: fourButton, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
         
@@ -198,6 +196,18 @@ class ViewController: UIViewController {
         let multiplyButtonTrailingConstraint = NSLayoutConstraint(item: divideButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
         
         view.addConstraints([fourButtonLeadingConstraint, fourButtonTrailingConstraint, fiveButtonLeadingConstraint, fiveButtonTrailingConstraint, sixButtonLeadingConstraint, sixButtonTrailingConstraint, multiplyButtonLeadingConstraint, multiplyButtonTrailingConstraint])
+        
+        //and then the matching widths
+        
+        let fourButtonWidth = NSLayoutConstraint(item: fourButton, attribute: .Width, relatedBy: .Equal, toItem: fiveButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        let fiveButtonWidth = NSLayoutConstraint(item: fiveButton, attribute: .Width, relatedBy: .Equal, toItem: sixButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        let sixButtonWidth = NSLayoutConstraint(item: sixButton, attribute: .Width, relatedBy: .Equal, toItem: multiplyButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        let multiplyButtonWidth = NSLayoutConstraint(item: multiplyButton, attribute: .Width, relatedBy: .Equal, toItem: fourButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([fourButtonWidth, fiveButtonWidth, sixButtonWidth, multiplyButtonWidth])
         
         
     }
