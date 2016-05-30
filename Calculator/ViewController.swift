@@ -10,12 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupButtons()
-    }
-    
-    let entryField = UILabel()
+    var entryField = UILabel()
     let zeroButton = UIButton()
     let oneButton = UIButton()
     let twoButton = UIButton()
@@ -31,6 +26,18 @@ class ViewController: UIViewController {
     let minusButton = UIButton()
     let multiplyButton = UIButton()
     let divideButton = UIButton()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupButtons()
+
+    //adding more entryField attributes
+    entryField.text = "0"
+    entryField.textAlignment = .Right
+    entryField.textColor = .yellowColor()
+    entryField.font = entryField.font.fontWithSize(48)
+        
+    }
     
     func setupButtons() {
         //set colors & add buttons
@@ -53,7 +60,7 @@ class ViewController: UIViewController {
         divideButton.backgroundColor = .orangeColor()
         
         
-        //add buttons to view
+        //add buttons (and label) to view
         view.addSubview(entryField)
         view.addSubview(zeroButton)
         view.addSubview(oneButton)
