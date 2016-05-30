@@ -56,9 +56,9 @@ class ViewController: UIViewController {
         //add buttons to view
         view.addSubview(entryField)
         //view.addSubview(zeroButton)
-        //view.addSubview(oneButton)
-        //view.addSubview(twoButton)
-        //view.addSubview(threeButton)
+        view.addSubview(oneButton)
+        view.addSubview(twoButton)
+        view.addSubview(threeButton)
         view.addSubview(fourButton)
         view.addSubview(fiveButton)
         view.addSubview(sixButton)
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         view.addSubview(nineButton)
         //view.addSubview(enterButton)
         //view.addSubview(plusButton)
-        //view.addSubview(minusButton)
+        view.addSubview(minusButton)
         view.addSubview(multiplyButton)
         view.addSubview(divideButton)
         
@@ -192,9 +192,9 @@ class ViewController: UIViewController {
         
         let sixButtonTrailingConstraint = NSLayoutConstraint(item: sixButton, attribute: .Trailing, relatedBy: .Equal, toItem: multiplyButton, attribute: .Leading, multiplier: 1.0, constant: 0)
         
-        let multiplyButtonLeadingConstraint = NSLayoutConstraint(item: multiplyButton, attribute: .Leading, relatedBy: .Equal, toItem: nineButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        let multiplyButtonLeadingConstraint = NSLayoutConstraint(item: multiplyButton, attribute: .Leading, relatedBy: .Equal, toItem: sixButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
         
-        let multiplyButtonTrailingConstraint = NSLayoutConstraint(item: divideButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        let multiplyButtonTrailingConstraint = NSLayoutConstraint(item: multiplyButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
         
         view.addConstraints([fourButtonLeadingConstraint, fourButtonTrailingConstraint, fiveButtonLeadingConstraint, fiveButtonTrailingConstraint, sixButtonLeadingConstraint, sixButtonTrailingConstraint, multiplyButtonLeadingConstraint, multiplyButtonTrailingConstraint])
         
@@ -209,6 +209,53 @@ class ViewController: UIViewController {
         let multiplyButtonWidth = NSLayoutConstraint(item: multiplyButton, attribute: .Width, relatedBy: .Equal, toItem: fourButton, attribute: .Width, multiplier: 1.0, constant: 0)
         
         view.addConstraints([fourButtonWidth, fiveButtonWidth, sixButtonWidth, multiplyButtonWidth])
+        
+        
+        // MARK: third row of buttons (1,2,3,minus)
+        
+        let oneButtonTopConstraint = NSLayoutConstraint(item: oneButton, attribute: .Top, relatedBy: .Equal, toItem: fourButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let twoButtonTopConstraint = NSLayoutConstraint(item: twoButton, attribute: .Top, relatedBy: .Equal, toItem: fiveButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let threeButtonTopConstraint = NSLayoutConstraint(item: threeButton, attribute: .Top, relatedBy: .Equal, toItem: sixButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let minusButtonTopConstraint = NSLayoutConstraint(item: minusButton, attribute: .Top, relatedBy: .Equal, toItem: multiplyButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([oneButtonTopConstraint, twoButtonTopConstraint, threeButtonTopConstraint, minusButtonTopConstraint])
+        
+        
+        // side to side constraints
+        
+        let oneButtonLeadingConstraint = NSLayoutConstraint(item: oneButton, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let oneButtonTrailingConstraint = NSLayoutConstraint(item: oneButton, attribute: .Trailing, relatedBy: .Equal, toItem: twoButton, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let twoButtonLeadingConstraint = NSLayoutConstraint(item: twoButton, attribute: .Leading, relatedBy: .Equal, toItem: oneButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        let twoButtonTrailingConstraint = NSLayoutConstraint(item: twoButton, attribute: .Trailing, relatedBy: .Equal, toItem: threeButton, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let threeButtonLeadingConstraint = NSLayoutConstraint(item: threeButton, attribute: .Leading, relatedBy: .Equal, toItem: twoButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        let threeButtonTrailingConstraint = NSLayoutConstraint(item: threeButton, attribute: .Trailing, relatedBy: .Equal, toItem: minusButton, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let minusButtonLeadingConstraint = NSLayoutConstraint(item: minusButton, attribute: .Leading, relatedBy: .Equal, toItem: threeButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        let minusButtonTrailingConstraint = NSLayoutConstraint(item: minusButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([oneButtonLeadingConstraint, oneButtonTrailingConstraint, twoButtonLeadingConstraint, twoButtonTrailingConstraint, threeButtonLeadingConstraint, threeButtonTrailingConstraint, minusButtonLeadingConstraint, minusButtonTrailingConstraint])
+        
+        //and then the matching widths
+        
+        let oneButtonWidth = NSLayoutConstraint(item: oneButton, attribute: .Width, relatedBy: .Equal, toItem: twoButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        let twoButtonWidth = NSLayoutConstraint(item: twoButton, attribute: .Width, relatedBy: .Equal, toItem: threeButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        let threeButtonWidth = NSLayoutConstraint(item: threeButton, attribute: .Width, relatedBy: .Equal, toItem: minusButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        let minusButtonWidth = NSLayoutConstraint(item: minusButton, attribute: .Width, relatedBy: .Equal, toItem: oneButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([oneButtonWidth, twoButtonWidth, threeButtonWidth, minusButtonWidth])
+
         
         
     }
