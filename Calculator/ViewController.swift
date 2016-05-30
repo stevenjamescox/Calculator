@@ -11,6 +11,19 @@ import UIKit
 class ViewController: UIViewController {
     
     var entryField = UILabel()
+    
+    var displayValue: Float {
+        get {
+            let entry = entryField.text ?? "0"
+            return (entry as NSString).floatValue
+        } set {
+            entryField.text = "\(newValue)"
+            isTyping = false
+        }
+    }
+    var stack = Stack()
+    var isTyping = false
+    
     let zeroButton = UIButton()
     let oneButton = UIButton()
     let twoButton = UIButton()
@@ -30,18 +43,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtons()
-
-    //adding more entryField attributes
-    entryField.text = "0"
-    entryField.textAlignment = .Right
-    entryField.textColor = .yellowColor()
-    entryField.font = entryField.font.fontWithSize(48)
         
+        //adding more entryField attributes
+        entryField.text = "0"
+        entryField.textAlignment = .Right
+        entryField.textColor = .yellowColor()
+        entryField.font = UIFont.systemFontOfSize(48)
+        entryField.backgroundColor = .blackColor()
+        //does the above line even work? perhaps only when there's text
     }
     
     func setupButtons() {
         //set colors & add buttons
-        entryField.backgroundColor = .blackColor()
         //does the above line even work? perhaps only when there's text
         zeroButton.backgroundColor = .grayColor()
         oneButton.backgroundColor = .grayColor()
@@ -58,6 +71,10 @@ class ViewController: UIViewController {
         minusButton.backgroundColor = .orangeColor()
         multiplyButton.backgroundColor = .orangeColor()
         divideButton.backgroundColor = .orangeColor()
+        
+        
+        
+        
         
         
         //add buttons (and label) to view
