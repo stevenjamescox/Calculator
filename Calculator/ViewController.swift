@@ -55,7 +55,6 @@ class ViewController: UIViewController {
     
     func setupButtons() {
         //set colors & add buttons
-        //does the above line even work? perhaps only when there's text
         zeroButton.backgroundColor = .grayColor()
         oneButton.backgroundColor = .grayColor()
         twoButton.backgroundColor = .grayColor()
@@ -71,11 +70,6 @@ class ViewController: UIViewController {
         minusButton.backgroundColor = .orangeColor()
         multiplyButton.backgroundColor = .orangeColor()
         divideButton.backgroundColor = .orangeColor()
-        
-        
-        
-        
-        
         
         //add buttons (and label) to view
         view.addSubview(entryField)
@@ -98,7 +92,6 @@ class ViewController: UIViewController {
         setupContraints()
         
     }
-    
     
     func setupContraints() {
         
@@ -364,18 +357,66 @@ class ViewController: UIViewController {
         let plusButtonHeight = NSLayoutConstraint(item: plusButton, attribute: .Height, relatedBy: .Equal, toItem: eightButton, attribute: .Height, multiplier: 1.0, constant: 0)
         
         view.addConstraints([sevenButtonHeight, eightButtonHeight, nineButtonHeight, divideButtonHeight, fourButtonHeight, fiveButtonHeight, sixButtonHeight, multiplyButtonHeight, oneButtonHeight, twoButtonHeight, threeButtonHeight, minusButtonHeight, zeroButtonHeight, enterButtonHeight, plusButtonHeight])
-        
     }
     
-    //YES!!! it worked
+    //YES!!! it worked. well the constraints, anyway
     
+    //MARK: functions and such
     
+    func enter() {
+        isTyping = false
+        stack.push(displayValue)
+        stack.log()
+    }
     
+    func appendDigit(button: UIButton) {
+        guard let digit = button.currentTitle else { return }
+        
+        if isTyping {
+            let displayText = entryField.text ?? ""
+            entryField.text = displayText + digit
+        } else {
+            entryField.text = digit
+            isTyping = true
+        }
+    }
     
+    func operate(button: UIButton) {
+        guard let operation = button.currentTitle else { return }
+        
+        if isTyping {
+            enter()
+        }
+        
+        if stack.count() >= 2 {
+            
+            let entry1 = stack.pop()!
+            let entry2 = stack.pop()!
+            
+            switch operation {
+                
+            case "÷":
+                displayValue = (entry2 / entry1)
+                
+            case "✕":
+                displayValue = (entry2 * entry1)
+                
+            case "−":
+                displayValue = (entry2 - entry1)
+                
+            case "+":
+                displayValue = (entry2 + entry1)
+                
+            default:
+                stack.push(entry1)
+                stack.push(entry2)
+                
+            }
+            
+            enter()
+        }
+    }
 }
-
-
-
 
 
 
