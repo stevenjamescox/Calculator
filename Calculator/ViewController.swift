@@ -32,12 +32,9 @@ class ViewController: UIViewController {
     let multiplyButton = UIButton()
     let divideButton = UIButton()
     
-    
-    
     func setupButtons() {
         //set colors & add buttons
         entryField.backgroundColor = .blackColor()
-        view.addSubview(entryField)
         zeroButton.backgroundColor = .grayColor()
         oneButton.backgroundColor = .grayColor()
         twoButton.backgroundColor = .grayColor()
@@ -73,7 +70,9 @@ class ViewController: UIViewController {
         view.addSubview(multiplyButton)
         view.addSubview(divideButton)
         
-}
+        setupContraints()
+        
+    }
     
     
     func setupContraints() {
@@ -99,21 +98,61 @@ class ViewController: UIViewController {
         
         // MARK: entryField size and constraints
         
-        let entryFieldWidth = NSLayoutConstraint(item: entryField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1.0, constant: 0)
-        
         let entryFieldTopConstraint = NSLayoutConstraint(item: entryField, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0)
         
         let entryFieldLeadingConstraint = NSLayoutConstraint(item: entryField, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
         
         let entryFieldTrailingConstraint = NSLayoutConstraint(item: entryField, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
         
-        //
+        // the following is easier than constraining to top of all following buttons, right?
+        
+        let entryFieldHeight = NSLayoutConstraint(item: entryField, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 90.0)
+        
+        view.addConstraints([entryFieldTopConstraint, entryFieldLeadingConstraint, entryFieldTrailingConstraint, entryFieldHeight])
+        
+        // MARK: first row of button size & constraints, (7,8,9,div)
+        
+        //first, the top row's top constraints
+        
+        let sevenButtonTopConstraint = NSLayoutConstraint(item: sevenButton, attribute: .Top, relatedBy: .Equal, toItem: entryField, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let eightButtonTopConstraint = NSLayoutConstraint(item: eightButton, attribute: .Top, relatedBy: .Equal, toItem: entryField, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let nineButtonTopConstraint = NSLayoutConstraint(item: nineButton, attribute: .Top, relatedBy: .Equal, toItem: entryField, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        let divideButtonTopConstraint = NSLayoutConstraint(item: divideButton, attribute: .Top, relatedBy: .Equal, toItem: entryField, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([sevenButtonTopConstraint, eightButtonTopConstraint, nineButtonTopConstraint, divideButtonTopConstraint])
+        
+        // uhhhh can we do the width with like a 1/4 here?
+        // well that didn't work the way I thought it might ("relatedBy: 0.25" or something like that, will just constrain to each other
+        
+        let sevenButtonLeadingConstraint = NSLayoutConstraint(item: sevenButton, attribute: .Leading, relatedBy: .Equal, toItem: entryField, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let sevenButtonTrailingConstraint = NSLayoutConstraint(item: sevenButton, attribute: .Trailing, relatedBy: .Equal, toItem: eightButton, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let eightButtonLeadingConstraint = NSLayoutConstraint(item: eightButton, attribute: .Leading, relatedBy: .Equal, toItem: sevenButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        let eightButtonTrailingConstraint = NSLayoutConstraint(item: eightButton, attribute: .Trailing, relatedBy: .Equal, toItem: nineButton, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let nineButtonLeadingConstraint = NSLayoutConstraint(item: nineButton, attribute: .Leading, relatedBy: .Equal, toItem: eightButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        let nineButtonTrailingConstraint = NSLayoutConstraint(item: nineButton, attribute: .Trailing, relatedBy: .Equal, toItem: divideButton, attribute: .Leading, multiplier: 1.0, constant: 0)
+        
+        let divideButtonLeadingConstraint = NSLayoutConstraint(item: divideButton, attribute: .Leading, relatedBy: .Equal, toItem: nineButton, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        let divideButtonTrailingConstraint = NSLayoutConstraint(item: divideButton, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([sevenButtonLeadingConstraint, sevenButtonTrailingConstraint, eightButtonLeadingConstraint, eightButtonTrailingConstraint, nineButtonLeadingConstraint, nineButtonTrailingConstraint, divideButtonLeadingConstraint, divideButtonTrailingConstraint])
+        
+        
+        ///let's see if these suckers work
+        
+        
+        
+    }
     
-
-
 }
-
-
 
 
 
