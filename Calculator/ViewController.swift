@@ -35,6 +35,7 @@ class ViewController: UIViewController {
     func setupButtons() {
         //set colors & add buttons
         entryField.backgroundColor = .blackColor()
+        //does the above line even work? perhaps only when there's text
         zeroButton.backgroundColor = .grayColor()
         oneButton.backgroundColor = .grayColor()
         twoButton.backgroundColor = .grayColor()
@@ -54,20 +55,20 @@ class ViewController: UIViewController {
         
         //add buttons to view
         view.addSubview(entryField)
-        view.addSubview(zeroButton)
-        view.addSubview(oneButton)
-        view.addSubview(twoButton)
-        view.addSubview(threeButton)
-        view.addSubview(fourButton)
-        view.addSubview(fiveButton)
-        view.addSubview(sixButton)
+        //view.addSubview(zeroButton)
+        //view.addSubview(oneButton)
+        //view.addSubview(twoButton)
+        //view.addSubview(threeButton)
+        //view.addSubview(fourButton)
+        //view.addSubview(fiveButton)
+        //view.addSubview(sixButton)
         view.addSubview(sevenButton)
         view.addSubview(eightButton)
         view.addSubview(nineButton)
-        view.addSubview(enterButton)
-        view.addSubview(plusButton)
-        view.addSubview(minusButton)
-        view.addSubview(multiplyButton)
+        //view.addSubview(enterButton)
+        //view.addSubview(plusButton)
+        //view.addSubview(minusButton)
+        //view.addSubview(multiplyButton)
         view.addSubview(divideButton)
         
         setupContraints()
@@ -96,7 +97,7 @@ class ViewController: UIViewController {
         multiplyButton.translatesAutoresizingMaskIntoConstraints = false
         divideButton.translatesAutoresizingMaskIntoConstraints = false
         
-        // MARK: entryField size and constraints
+        // MARK: entryField constraints
         
         let entryFieldTopConstraint = NSLayoutConstraint(item: entryField, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0)
         
@@ -106,7 +107,7 @@ class ViewController: UIViewController {
         
         // the following is easier than constraining to top of all following buttons, right?
         
-        let entryFieldHeight = NSLayoutConstraint(item: entryField, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 90.0)
+        let entryFieldHeight = NSLayoutConstraint(item: entryField, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 111.0)
         
         view.addConstraints([entryFieldTopConstraint, entryFieldLeadingConstraint, entryFieldTrailingConstraint, entryFieldHeight])
         
@@ -127,7 +128,7 @@ class ViewController: UIViewController {
         // uhhhh can we do the width with like a 1/4 here?
         // well that didn't work the way I thought it might ("relatedBy: 0.25" or something like that, will just constrain to each other
         
-        let sevenButtonLeadingConstraint = NSLayoutConstraint(item: sevenButton, attribute: .Leading, relatedBy: .Equal, toItem: entryField, attribute: .Leading, multiplier: 1.0, constant: 0)
+        let sevenButtonLeadingConstraint = NSLayoutConstraint(item: sevenButton, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
         
         let sevenButtonTrailingConstraint = NSLayoutConstraint(item: sevenButton, attribute: .Trailing, relatedBy: .Equal, toItem: eightButton, attribute: .Leading, multiplier: 1.0, constant: 0)
         
@@ -148,8 +149,24 @@ class ViewController: UIViewController {
         
         ///let's see if these suckers work
         
+        ////weelllll they don't really work cuz I haven't constrained the bottom of each button
+        /// and I still haven't made their widths equal to one another, gotta do that now
         
         
+        let sevenButtonWidth = NSLayoutConstraint(item: sevenButton, attribute: .Width, relatedBy: .Equal, toItem: eightButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        let eightButtonWidth = NSLayoutConstraint(item: eightButton, attribute: .Width, relatedBy: .Equal, toItem: nineButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        let nineButtonWidth = NSLayoutConstraint(item: nineButton, attribute: .Width, relatedBy: .Equal, toItem: divideButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        let divideButtonWidth = NSLayoutConstraint(item: divideButton, attribute: .Width, relatedBy: .Equal, toItem: sevenButton, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([sevenButtonWidth, eightButtonWidth, nineButtonWidth, divideButtonWidth])
+        
+        ///welp, it looks right for now, can't do much with the height until the next rows are set. BUT, I am concerned that the entryLabel isn't looking filled it. its space is correct, but not color
+        
+        
+
     }
     
 }
