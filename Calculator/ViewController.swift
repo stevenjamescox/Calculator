@@ -59,16 +59,16 @@ class ViewController: UIViewController {
         //view.addSubview(oneButton)
         //view.addSubview(twoButton)
         //view.addSubview(threeButton)
-        //view.addSubview(fourButton)
-        //view.addSubview(fiveButton)
-        //view.addSubview(sixButton)
+        view.addSubview(fourButton)
+        view.addSubview(fiveButton)
+        view.addSubview(sixButton)
         view.addSubview(sevenButton)
         view.addSubview(eightButton)
         view.addSubview(nineButton)
         //view.addSubview(enterButton)
         //view.addSubview(plusButton)
         //view.addSubview(minusButton)
-        //view.addSubview(multiplyButton)
+        view.addSubview(multiplyButton)
         view.addSubview(divideButton)
         
         setupContraints()
@@ -166,7 +166,7 @@ class ViewController: UIViewController {
         ///welp, it looks right for now, can't do much with the height until the next rows are set. BUT, I am concerned that the entryLabel isn't looking filled it. its space is correct, but not color
         
         // MARK: second row of buttons (4,5,6,mult)
-        
+      
         let fourButtonTopConstraint = NSLayoutConstraint(item: fourButton, attribute: .Top, relatedBy: .Equal, toItem: sevenButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
         
         let fiveButtonTopConstraint = NSLayoutConstraint(item: fiveButton, attribute: .Top, relatedBy: .Equal, toItem: eightButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
@@ -176,6 +176,7 @@ class ViewController: UIViewController {
         let multiplyButtonTopConstraint = NSLayoutConstraint(item: multiplyButton, attribute: .Top, relatedBy: .Equal, toItem: divideButton, attribute: .Bottom, multiplier: 1.0, constant: 0)
         
         view.addConstraints([fourButtonTopConstraint, fiveButtonTopConstraint, sixButtonTopConstraint, multiplyButtonTopConstraint])
+ 
         
         // okay now the side to side constraints
         
