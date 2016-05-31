@@ -56,20 +56,124 @@ class ViewController: UIViewController {
     func setupButtons() {
         //set colors & add buttons
         zeroButton.backgroundColor = .grayColor()
+        zeroButton.layer.borderWidth = 0.6
+        zeroButton.layer.borderColor = UIColor.blackColor().CGColor
+        zeroButton.setTitle("0", forState: .Normal)
+        zeroButton.setTitleColor(.whiteColor(), forState: .Normal)
+        zeroButton.titleLabel?.font = .systemFontOfSize(24.0)
+        zeroButton.addTarget(self, action: #selector(appendDigit), forControlEvents: .TouchUpInside)
+        
         oneButton.backgroundColor = .grayColor()
+        oneButton.layer.borderWidth = 0.6
+        oneButton.layer.borderColor = UIColor.blackColor().CGColor
+        oneButton.setTitle("1", forState: .Normal)
+        oneButton.setTitleColor(.whiteColor(), forState: .Normal)
+        oneButton.titleLabel?.font = .systemFontOfSize(24.0)
+        oneButton.addTarget(self, action: #selector(appendDigit), forControlEvents: .TouchUpInside)
+        
         twoButton.backgroundColor = .grayColor()
+        twoButton.layer.borderWidth = 0.6
+        twoButton.layer.borderColor = UIColor.blackColor().CGColor
+        twoButton.setTitle("2", forState: .Normal)
+        twoButton.setTitleColor(.whiteColor(), forState: .Normal)
+        twoButton.titleLabel?.font = .systemFontOfSize(24.0)
+        twoButton.addTarget(self, action: #selector(appendDigit), forControlEvents: .TouchUpInside)
+        
         threeButton.backgroundColor = .grayColor()
+        threeButton.layer.borderWidth = 0.6
+        threeButton.layer.borderColor = UIColor.blackColor().CGColor
+        threeButton.setTitle("3", forState: .Normal)
+        threeButton.setTitleColor(.whiteColor(), forState: .Normal)
+        threeButton.titleLabel?.font = .systemFontOfSize(24.0)
+        threeButton.addTarget(self, action: #selector(appendDigit), forControlEvents: .TouchUpInside)
+        
         fourButton.backgroundColor = .grayColor()
+        fourButton.layer.borderWidth = 0.6
+        fourButton.layer.borderColor = UIColor.blackColor().CGColor
+        fourButton.setTitle("4", forState: .Normal)
+        fourButton.setTitleColor(.whiteColor(), forState: .Normal)
+        fourButton.titleLabel?.font = .systemFontOfSize(24.0)
+        fourButton.addTarget(self, action: #selector(appendDigit), forControlEvents: .TouchUpInside)
+        
         fiveButton.backgroundColor = .grayColor()
+        fiveButton.layer.borderWidth = 0.6
+        fiveButton.layer.borderColor = UIColor.blackColor().CGColor
+        fiveButton.setTitle("5", forState: .Normal)
+        fiveButton.setTitleColor(.whiteColor(), forState: .Normal)
+        fiveButton.titleLabel?.font = .systemFontOfSize(24.0)
+        fiveButton.addTarget(self, action: #selector(appendDigit), forControlEvents: .TouchUpInside)
+        
         sixButton.backgroundColor = .grayColor()
+        sixButton.layer.borderWidth = 0.6
+        sixButton.layer.borderColor = UIColor.blackColor().CGColor
+        sixButton.setTitle("6", forState: .Normal)
+        sixButton.setTitleColor(.whiteColor(), forState: .Normal)
+        sixButton.titleLabel?.font = .systemFontOfSize(24.0)
+        sixButton.addTarget(self, action: #selector(appendDigit), forControlEvents: .TouchUpInside)
+        
         sevenButton.backgroundColor = .grayColor()
+        sevenButton.layer.borderWidth = 0.6
+        sevenButton.layer.borderColor = UIColor.blackColor().CGColor
+        sevenButton.setTitle("7", forState: .Normal)
+        sevenButton.setTitleColor(.whiteColor(), forState: .Normal)
+        sevenButton.titleLabel?.font = .systemFontOfSize(24.0)
+        sevenButton.addTarget(self, action: #selector(appendDigit), forControlEvents: .TouchUpInside)
+        
         eightButton.backgroundColor = .grayColor()
+        eightButton.layer.borderWidth = 0.6
+        eightButton.layer.borderColor = UIColor.blackColor().CGColor
+        eightButton.setTitle("8", forState: .Normal)
+        eightButton.setTitleColor(.whiteColor(), forState: .Normal)
+        eightButton.titleLabel?.font = .systemFontOfSize(24.0)
+        eightButton.addTarget(self, action: #selector(appendDigit), forControlEvents: .TouchUpInside)
+        
         nineButton.backgroundColor = .grayColor()
+        nineButton.layer.borderWidth = 0.6
+        nineButton.layer.borderColor = UIColor.blackColor().CGColor
+        nineButton.setTitle("9", forState: .Normal)
+        nineButton.setTitleColor(.whiteColor(), forState: .Normal)
+        nineButton.titleLabel?.font = .systemFontOfSize(24.0)
+        nineButton.addTarget(self, action: #selector(appendDigit), forControlEvents: .TouchUpInside)
+        
         enterButton.backgroundColor = .purpleColor()
+        enterButton.layer.borderWidth = 0.6
+        enterButton.layer.borderColor = UIColor.blackColor().CGColor
+        enterButton.setTitle("↵", forState: .Normal)
+        enterButton.setTitleColor(.whiteColor(), forState: .Normal)
+        enterButton.titleLabel?.font = .systemFontOfSize(24.0)
+        enterButton.addTarget(self, action: #selector(operate), forControlEvents: .TouchUpInside)
+        
         plusButton.backgroundColor = .orangeColor()
+        plusButton.layer.borderWidth = 0.6
+        plusButton.layer.borderColor = UIColor.blackColor().CGColor
+        plusButton.setTitle("+", forState: .Normal)
+        plusButton.setTitleColor(.whiteColor(), forState: .Normal)
+        plusButton.titleLabel?.font = .systemFontOfSize(24.0)
+        plusButton.addTarget(self, action: #selector(operate), forControlEvents: .TouchUpInside)
+        
         minusButton.backgroundColor = .orangeColor()
+        minusButton.layer.borderWidth = 0.6
+        minusButton.layer.borderColor = UIColor.blackColor().CGColor
+        minusButton.setTitle("-", forState: .Normal)
+        minusButton.setTitleColor(.whiteColor(), forState: .Normal)
+        minusButton.titleLabel?.font = .systemFontOfSize(24.0)
+        minusButton.addTarget(self, action: #selector(operate), forControlEvents: .TouchUpInside)
+        
         multiplyButton.backgroundColor = .orangeColor()
+        multiplyButton.layer.borderWidth = 0.6
+        multiplyButton.layer.borderColor = UIColor.blackColor().CGColor
+        multiplyButton.setTitle("x", forState: .Normal)
+        multiplyButton.setTitleColor(.whiteColor(), forState: .Normal)
+        multiplyButton.titleLabel?.font = .systemFontOfSize(24.0)
+        multiplyButton.addTarget(self, action: #selector(operate), forControlEvents: .TouchUpInside)
+        
         divideButton.backgroundColor = .orangeColor()
+        divideButton.layer.borderWidth = 0.6
+        divideButton.layer.borderColor = UIColor.blackColor().CGColor
+        divideButton.setTitle("÷", forState: .Normal)
+        divideButton.setTitleColor(.whiteColor(), forState: .Normal)
+        divideButton.titleLabel?.font = .systemFontOfSize(24.0)
+        divideButton.addTarget(self, action: #selector(operate), forControlEvents: .TouchUpInside)
         
         //add buttons (and label) to view
         view.addSubview(entryField)
