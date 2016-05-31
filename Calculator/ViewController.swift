@@ -21,8 +21,8 @@ class ViewController: UIViewController {
             isTyping = false
         }
     }
-    var stack = Stack()
     var isTyping = false
+    var stack = Stack()
     
     let zeroButton = UIButton()
     let oneButton = UIButton()
@@ -42,19 +42,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupButtons()
+        
+        view.backgroundColor = .blackColor()
         
         //adding more entryField attributes
         entryField.text = "0"
         entryField.textAlignment = .Right
-        entryField.textColor = .yellowColor()
-        entryField.font = UIFont.systemFontOfSize(48)
-        entryField.backgroundColor = .blackColor()
-        //does the above line even work? perhaps only when there's text
+        entryField.textColor = .whiteColor()
+        entryField.font = .systemFontOfSize(48)
+        setupButtons()
+
     }
     
     func setupButtons() {
         //set colors & add buttons
+        //(later) adding border details, title/color/font, and ACTION-TARGET
+        
         zeroButton.backgroundColor = .grayColor()
         zeroButton.layer.borderWidth = 0.6
         zeroButton.layer.borderColor = UIColor.blackColor().CGColor
@@ -194,7 +197,6 @@ class ViewController: UIViewController {
         view.addSubview(divideButton)
         
         setupContraints()
-        
     }
     
     func setupContraints() {
@@ -224,9 +226,9 @@ class ViewController: UIViewController {
         
         let entryFieldLeadingConstraint = NSLayoutConstraint(item: entryField, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
         
-        let entryFieldTrailingConstraint = NSLayoutConstraint(item: entryField, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
+        let entryFieldTrailingConstraint = NSLayoutConstraint(item: entryField, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
         
-        // the following is easier than constraining to top of all following buttons, right?
+        // the following line is easier than constraining to top of all following buttons, right?
         
         let entryFieldHeight = NSLayoutConstraint(item: entryField, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 111.0)
         
