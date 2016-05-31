@@ -144,7 +144,7 @@ class ViewController: UIViewController {
         enterButton.setTitle("↵", forState: .Normal)
         enterButton.setTitleColor(.whiteColor(), forState: .Normal)
         enterButton.titleLabel?.font = .systemFontOfSize(24.0)
-        enterButton.addTarget(self, action: #selector(operate), forControlEvents: .TouchUpInside)
+        enterButton.addTarget(self, action: #selector(enter), forControlEvents: .TouchUpInside)
         
         plusButton.backgroundColor = .orangeColor()
         plusButton.layer.borderWidth = 0.6
@@ -469,12 +469,6 @@ class ViewController: UIViewController {
     
     //MARK: functions and such
     
-    func enter() {
-        isTyping = false
-        stack.push(displayValue)
-        stack.log()
-    }
-    
     func appendDigit(button: UIButton) {
         guard let digit = button.currentTitle else { return }
         
@@ -487,6 +481,12 @@ class ViewController: UIViewController {
         }
     }
     
+    func enter() {
+        isTyping = false
+        stack.push(displayValue)
+        stack.log()
+    }
+    
     func operate(button: UIButton) {
         guard let operation = button.currentTitle else { return }
         
@@ -495,32 +495,27 @@ class ViewController: UIViewController {
         }
         
         if stack.count() >= 2 {
-            
-            let entry1 = stack.pop()!
-            let entry2 = stack.pop()!
+            let float1 = stack.pop()!
+            let float2 = stack.pop()!
             
             switch operation {
-                
             case "÷":
-                displayValue = (entry2 / entry1)
-                
+                displayValue = float2 / float1
             case "✕":
-                displayValue = (entry2 * entry1)
-                
+                displayValue = float2 * float1
             case "−":
-                displayValue = (entry2 - entry1)
-                
+                displayValue = float2 - float1
             case "+":
-                displayValue = (entry2 + entry1)
-                
+                displayValue = float2 + float1
             default:
-                stack.push(entry1)
-                stack.push(entry2)
+                stack.push(float1)
+                stack.push(float2)
                 
             }
             
             enter()
         }
+        
     }
 }
 
