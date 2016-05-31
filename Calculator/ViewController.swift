@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         entryField.textColor = .whiteColor()
         entryField.font = .systemFontOfSize(48)
         setupButtons()
-
+        
     }
     
     func setupButtons() {
@@ -144,7 +144,7 @@ class ViewController: UIViewController {
         enterButton.setTitle("↵", forState: .Normal)
         enterButton.setTitleColor(.whiteColor(), forState: .Normal)
         enterButton.titleLabel?.font = .systemFontOfSize(24.0)
-        enterButton.addTarget(self, action: #selector(enter), forControlEvents: .TouchUpInside)
+        enterButton.addTarget(self, action: #selector(ViewController.enter), forControlEvents: .TouchUpInside)
         
         plusButton.backgroundColor = .orangeColor()
         plusButton.layer.borderWidth = 0.6
@@ -152,23 +152,23 @@ class ViewController: UIViewController {
         plusButton.setTitle("+", forState: .Normal)
         plusButton.setTitleColor(.whiteColor(), forState: .Normal)
         plusButton.titleLabel?.font = .systemFontOfSize(24.0)
-        plusButton.addTarget(self, action: #selector(operate), forControlEvents: .TouchUpInside)
+        plusButton.addTarget(self, action: #selector(ViewController.operate(_:)), forControlEvents: .TouchUpInside)
         
         minusButton.backgroundColor = .orangeColor()
         minusButton.layer.borderWidth = 0.6
         minusButton.layer.borderColor = UIColor.blackColor().CGColor
-        minusButton.setTitle("-", forState: .Normal)
+        minusButton.setTitle("−", forState: .Normal)
         minusButton.setTitleColor(.whiteColor(), forState: .Normal)
         minusButton.titleLabel?.font = .systemFontOfSize(24.0)
-        minusButton.addTarget(self, action: #selector(operate), forControlEvents: .TouchUpInside)
+        minusButton.addTarget(self, action: #selector(ViewController.operate(_:)), forControlEvents: .TouchUpInside)
         
         multiplyButton.backgroundColor = .orangeColor()
         multiplyButton.layer.borderWidth = 0.6
         multiplyButton.layer.borderColor = UIColor.blackColor().CGColor
-        multiplyButton.setTitle("x", forState: .Normal)
+        multiplyButton.setTitle("✕", forState: .Normal)
         multiplyButton.setTitleColor(.whiteColor(), forState: .Normal)
         multiplyButton.titleLabel?.font = .systemFontOfSize(24.0)
-        multiplyButton.addTarget(self, action: #selector(operate), forControlEvents: .TouchUpInside)
+        multiplyButton.addTarget(self, action: #selector(ViewController.operate(_:)), forControlEvents: .TouchUpInside)
         
         divideButton.backgroundColor = .orangeColor()
         divideButton.layer.borderWidth = 0.6
@@ -176,7 +176,7 @@ class ViewController: UIViewController {
         divideButton.setTitle("÷", forState: .Normal)
         divideButton.setTitleColor(.whiteColor(), forState: .Normal)
         divideButton.titleLabel?.font = .systemFontOfSize(24.0)
-        divideButton.addTarget(self, action: #selector(operate), forControlEvents: .TouchUpInside)
+        divideButton.addTarget(self, action: #selector(ViewController.operate(_:)), forControlEvents: .TouchUpInside)
         
         //add buttons (and label) to view
         view.addSubview(entryField)
@@ -471,7 +471,6 @@ class ViewController: UIViewController {
     
     func appendDigit(button: UIButton) {
         guard let digit = button.currentTitle else { return }
-        
         if isTyping {
             let displayText = entryField.text ?? ""
             entryField.text = displayText + digit
@@ -489,7 +488,6 @@ class ViewController: UIViewController {
     
     func operate(button: UIButton) {
         guard let operation = button.currentTitle else { return }
-        
         if isTyping {
             enter()
         }
@@ -497,16 +495,15 @@ class ViewController: UIViewController {
         if stack.count() >= 2 {
             let float1 = stack.pop()!
             let float2 = stack.pop()!
-            
             switch operation {
             case "÷":
-                displayValue = float2 / float1
+                displayValue = (float2 / float1)
             case "✕":
-                displayValue = float2 * float1
+                displayValue = (float2 * float1)
             case "−":
-                displayValue = float2 - float1
+                displayValue = (float2 - float1)
             case "+":
-                displayValue = float2 + float1
+                displayValue = (float2 + float1)
             default:
                 stack.push(float1)
                 stack.push(float2)
